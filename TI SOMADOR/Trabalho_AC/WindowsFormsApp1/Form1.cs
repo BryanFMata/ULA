@@ -23,9 +23,110 @@ namespace WindowsFormsApp1
         string mantissa_soma = "";
         string resultado = "", resultado_hexa;
         string IEEE_final, sinal_final = "0";
+        double multiplicador;
+        double multiplicando;
+
+        private void btn_multiplicar_Click(object sender, EventArgs e)
+        {
+            string mantissa_multiplicando = "";
+            bool erro = false;
+            if (num1 %1 != 0 && num2 %1 != 0)
+            {
+                MessageBox.Show("Para multiplicar um dos dois fatores precisa ser inteiro", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                erro = true;
+            }
+            else if(num1 %1 != 0)
+            {
+                multiplicando = num1;
+                multiplicador = num2;
+                mantissa_multiplicando = mantissa1;               
+            }
+            else if(num2 %1 != 0)
+            {
+                multiplicando = num2;
+                multiplicador = num1;
+                mantissa_multiplicando = mantissa2;
+            }
+            else
+            {
+                if (num1 < num2)
+                {
+                    multiplicador = num1;
+                    multiplicando = num2;
+                    mantissa_multiplicando = mantissa2;
+                }
+                else if(num2 < num1)
+                {
+                    multiplicador = num2;
+                    multiplicando = num1;
+                    mantissa_multiplicando = mantissa1;
+                }
+                else
+                {
+                    multiplicador = num1;
+                    multiplicando = num2;
+                    mantissa_multiplicando = mantissa2;
+                }
+            }
+
+            if(erro == false)
+            {
+                Somador32Bit somador32 = new Somador32Bit();
+                double num1_csinal = double.Parse(txt_num1.Text);
+                double num2_csinal = double.Parse(txt_num2.Text);
+                double resultado_decimal = num1 * num2;
+                string sinal_final = "";
+                if(num1_csinal < 0 && num2_csinal < 0)
+                {
+                    sinal_final = "0";
+                }
+                else if(num1_csinal < 0 || num2_csinal < 0)
+                {
+                    sinal_final = "1";
+                }
+                else
+                {
+                    sinal_final = "0";
+                }
+                string expoenteFinal = Decimal_Binario.DecimalParaBinario((numeroA * numeroB).ToString());
+                expoenteFinal = Conversões.Expoente(expoenteFinal);
+                bool overflow = false;                
+                string mantissa_multiplicando_1 = Conversões.Colocar1(mantissa_multiplicando);
+                bool[] multiplicando_vet_bool = Conversões.Vetor_Booleano(mantissa_multiplicando_1);
+                bool[] zero_bool = Conversões.Numero_zero();
+                bool[] resultado = multiplicando_vet_bool;
+                for (int i=0; i<multiplicador; i++)
+                {
+                    resultado = somador32.Somador(resultado, zero_bool, ref overflow);
+                }
+                string resultado_binario = Conversões.Bool_Binario_string(resultado);
+                resultado_binario = Conversões.Retirar_1(resultado_binario);
+                //string mantissa_resultado = Conversões.Mantissa(resultado_binario);
+                string mantissa_resultado = resultado_binario;
+                IEEE_final = sinal_final + expoenteFinal + mantissa_resultado;
+                resultado_hexa = Conversões.BinarioParaHexa(IEEE_final);
+                lst_resultadosinal.Items.Clear();
+                lst_resultadoexpoente.Items.Clear();
+                lst_resultadoMantissa.Items.Clear();
+                lst_resultadoHexa.Items.Clear();
+                lst_resutadosomadecimal.Items.Clear();
+                lst_resultadosinal.Items.Add(sinal_final);
+                lst_resultadoexpoente.Items.Add(expoenteFinal);
+                lst_resultadoMantissa.Items.Add(mantissa_resultado);
+                lst_resutadosomadecimal.Items.Add(resultado_decimal);
+                lst_resultadoHexa.Items.Add(resultado_hexa);
+            }
+            else
+            {
+                MessageBox.Show("Operação não executada", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
         int expoente_simplificado_1, num_A_negativo;
         int expoente_simplificado_2, num_B_negativo;
         double num1, num2, resultado_decimal;
+
+
         private void btn_soma_Click(object sender, EventArgs e)
         {
             //SEPARAR DECIMAL E FRACIONARIO QUANDO CONVERTER PARA BINARIO
@@ -96,6 +197,7 @@ namespace WindowsFormsApp1
             btn_soma.Enabled = false;
         }
 
+
         private void btnEntrada_Click(object sender, EventArgs e)
         {            
             int array = txt_num2.Text.Length;
@@ -157,6 +259,8 @@ namespace WindowsFormsApp1
                     lst_num1binario.Items.Add(valorBinario1_inteiro);
                     lst_num1.Items.Add(num1);
                     lst_num2.Items.Add(num2);
+                    valorBinario1 = valorBinario1_inteiro;
+                    valorBinario2 = valorBinario2_inteiro;
                 }
                 else
                 {

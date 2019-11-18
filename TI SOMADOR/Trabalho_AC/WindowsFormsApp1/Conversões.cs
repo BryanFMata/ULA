@@ -168,5 +168,35 @@ namespace WindowsFormsApp1
 
             return binario.Substring(0, 23);
         }
+
+        public static string Converter_24bits(string valor)
+        {
+            char[] valor24 = new char[24];
+            char[] valor_antes = valor.ToCharArray();
+            int valor24t = valor24.Length;
+            int tamanho = valor_antes.Length;
+            string retorno;
+            for (int i = 0; i < valor24.Length; i++)
+            {
+                valor24[i] = '0';
+            }
+            for (int i = valor_antes.Length; i > 0; i--)
+            {
+                valor24[valor24t - 1] = valor[i - 1];
+                valor24t--;
+                tamanho--;
+            }
+            retorno = new string(valor24);
+            return retorno;
+        }
+        public static bool[] Numero_zero()
+        {
+            bool[] retorno = new bool[24];
+            for(int i = 0; i<retorno.Length; i++)
+            {
+                retorno[i] = false;
+            }
+            return retorno;
+        }
     }
 }

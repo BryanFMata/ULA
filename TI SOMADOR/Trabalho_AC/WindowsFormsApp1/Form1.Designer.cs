@@ -60,6 +60,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lst_num2binario = new System.Windows.Forms.ListBox();
             this.lst_num1binario = new System.Windows.Forms.ListBox();
+            this.btn_multiplicar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEntrada
@@ -302,7 +303,7 @@
             this.button4.BackColor = System.Drawing.Color.DarkSlateGray;
             this.button4.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(303, 225);
+            this.button4.Location = new System.Drawing.Point(267, 225);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(51, 38);
@@ -316,7 +317,7 @@
             this.btn_soma.BackColor = System.Drawing.Color.DarkSlateGray;
             this.btn_soma.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_soma.ForeColor = System.Drawing.Color.White;
-            this.btn_soma.Location = new System.Drawing.Point(226, 225);
+            this.btn_soma.Location = new System.Drawing.Point(190, 225);
             this.btn_soma.Margin = new System.Windows.Forms.Padding(2);
             this.btn_soma.Name = "btn_soma";
             this.btn_soma.Size = new System.Drawing.Size(51, 38);
@@ -446,12 +447,27 @@
             this.lst_num1binario.Size = new System.Drawing.Size(125, 17);
             this.lst_num1binario.TabIndex = 52;
             // 
+            // btn_multiplicar
+            // 
+            this.btn_multiplicar.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btn_multiplicar.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_multiplicar.ForeColor = System.Drawing.Color.White;
+            this.btn_multiplicar.Location = new System.Drawing.Point(342, 225);
+            this.btn_multiplicar.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_multiplicar.Name = "btn_multiplicar";
+            this.btn_multiplicar.Size = new System.Drawing.Size(51, 38);
+            this.btn_multiplicar.TabIndex = 53;
+            this.btn_multiplicar.Text = "x";
+            this.btn_multiplicar.UseVisualStyleBackColor = false;
+            this.btn_multiplicar.Click += new System.EventHandler(this.btn_multiplicar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.gray_painted_background_53876_94041;
             this.ClientSize = new System.Drawing.Size(597, 481);
+            this.Controls.Add(this.btn_multiplicar);
             this.Controls.Add(this.lst_num1binario);
             this.Controls.Add(this.lst_num2binario);
             this.Controls.Add(this.label2);
@@ -527,6 +543,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lst_num2binario;
         private System.Windows.Forms.ListBox lst_num1binario;
+        private System.Windows.Forms.Button btn_multiplicar;
     }
 }
 
